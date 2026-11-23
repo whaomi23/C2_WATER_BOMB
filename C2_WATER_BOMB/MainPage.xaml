@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="C2_WATER_BOMB.MainPage"
+             BackgroundColor="#0A1F14">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20">
+
+            <!-- Encabezado -->
+            <Label Text="SISTEMA DE RIEGO"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#D8F3DC"
+                   HorizontalOptions="Center"/>
+            <Label Text="Control de bombas de agua"
+                   FontSize="13"
+                   TextColor="#95D5B2"
+                   HorizontalOptions="Center"/>
+
+            <!-- ============ BOMBA / ZONA 1 ============ -->
+            <Border StrokeShape="RoundRectangle 24"
+                    Stroke="#1B4332"
+                    StrokeThickness="2"
+                    BackgroundColor="#1B4332"
+                    Padding="18">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+
+                    <!-- Grado circular de actividad -->
+                    <Grid WidthRequest="130" HeightRequest="130"
+                          HorizontalOptions="Start" VerticalOptions="Center">
+
+                        <!-- Pista de fondo -->
+                        <Ellipse Stroke="#2D6A4F"
+                                 StrokeThickness="9"
+                                 Fill="Transparent"/>
+
+                        <!-- Anillo de actividad (gira + se ilumina al regar) -->
+                        <Ellipse x:Name="ringBomba1"
+                                 Stroke="#52B788"
+                                 StrokeThickness="9"
+                                 Fill="Transparent"
+                                 StrokeDashArray="40,100"
+                                 StrokeDashOffset="0"
+                                 Opacity="0.25">
+                            <Ellipse.Triggers>
+                                <DataTrigger TargetType="Ellipse"
+                                             Binding="{Binding Source={x:Reference switchBomba1}, Path=IsToggled}"
+                                             Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </DataTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+
+                        <!-- Centro del grado -->
+                        <VerticalStackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center"
+                                             Spacing="0">
+                            <Label Text="💧" FontSize="22" HorizontalOptions="Center"/>
+                            <Label x:Name="pctBomba1"
+                                   Text="0%"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#D8F3DC"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="statusBomba1"
+                                   Text="APAGADA"
+                                   FontSize="10"
+                                   TextColor="#95D5B2"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Información y control -->
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="6"
+                                         VerticalOptions="Center">
+                        <Label Text="Zona 1 · Jardín frontal"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#D8F3DC"/>
+
+                        <Label x:Name="caudalBomba1"
+                               Text="Caudal: 0 L/min"
+                               FontSize="12"
+                               TextColor="#95D5B2"/>
+
+                        <Label x:Name="tiempoBomba1"
+                               Text="Riego: 00:00"
+                               FontSize="12"
+                               TextColor="#95D5B2"/>
+
+                        <Switch x:Name="switchBomba1"
+                                HorizontalOptions="Start"
+                                OnColor="#52B788"
+                                Toggled="OnBomba1Toggled"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- ============ BOMBA / ZONA 2 ============ -->
+            <Border StrokeShape="RoundRectangle 24"
+                    Stroke="#1B4332"
+                    StrokeThickness="2"
+                    BackgroundColor="#1B4332"
+                    Padding="18">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="15">
+
+                    <Grid WidthRequest="130" HeightRequest="130"
+                          HorizontalOptions="Start" VerticalOptions="Center">
+
+                        <Ellipse Stroke="#2D6A4F"
+                                 StrokeThickness="9"
+                                 Fill="Transparent"/>
+
+                        <Ellipse x:Name="ringBomba2"
+                                 Stroke="#52B788"
+                                 StrokeThickness="9"
+                                 Fill="Transparent"
+                                 StrokeDashArray="40,100"
+                                 StrokeDashOffset="0"
+                                 Opacity="0.25">
+                            <Ellipse.Triggers>
+                                <DataTrigger TargetType="Ellipse"
+                                             Binding="{Binding Source={x:Reference switchBomba2}, Path=IsToggled}"
+                                             Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </DataTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+
+                        <VerticalStackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center"
+                                             Spacing="0">
+                            <Label Text="💧" FontSize="22" HorizontalOptions="Center"/>
+                            <Label x:Name="pctBomba2"
+                                   Text="0%"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="#D8F3DC"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="statusBomba2"
+                                   Text="APAGADA"
+                                   FontSize="10"
+                                   TextColor="#95D5B2"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="6"
+                                         VerticalOptions="Center">
+                        <Label Text="Zona 2 · Huerto trasero"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#D8F3DC"/>
+
+                        <Label x:Name="caudalBomba2"
+                               Text="Caudal: 0 L/min"
+                               FontSize="12"
+                               TextColor="#95D5B2"/>
+
+                        <Label x:Name="tiempoBomba2"
+                               Text="Riego: 00:00"
+                               FontSize="12"
+                               TextColor="#95D5B2"/>
+
+                        <Switch x:Name="switchBomba2"
+                                HorizontalOptions="Start"
+                                OnColor="#52B788"
+                                Toggled="OnBomba2Toggled"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
